@@ -1,0 +1,10 @@
+description: Gateway Timeout
+content:
+  application/json:
+    schema:
+      $ref: '../../schemas/ErrorResponse.yaml'
+    examples:
+      Example 1:
+        value:
+          error: gateway_timeout
+          message: Gateway Timeout

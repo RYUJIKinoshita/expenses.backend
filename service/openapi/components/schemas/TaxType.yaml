@@ -1,0 +1,6 @@
+description: Tax type
+title: TaxType
+type: string
+enum:
+  - inclusive
+  - exclusive

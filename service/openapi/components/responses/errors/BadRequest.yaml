@@ -1,0 +1,9 @@
+description: Bad Request
+content:
+  application/json:
+    schema:
+      $ref: '../../schemas/ErrorResponse.yaml'
+headers:
+  Access-Control-Allow-Origin:
+    schema:
+      type: string

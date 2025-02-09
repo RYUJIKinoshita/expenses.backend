@@ -1,0 +1,10 @@
+description: Bad Gateway
+content:
+  application/json:
+    schema:
+      $ref: '../../schemas/ErrorResponse.yaml'
+    examples:
+      Example 1:
+        value:
+          error: bad_gateway
+          message: Bad Gateway

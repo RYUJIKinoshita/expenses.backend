@@ -1,0 +1,6 @@
+name: is_deleted
+description: Whether is deleted or not.  If it is not specified, it will return all.
+in: query
+required: false
+schema:
+  type: boolean

@@ -1,0 +1,28 @@
+type: object
+properties:
+  title:
+    description: Title of expense.
+    type: string
+    minLength: 1
+    maxLength: 120
+  price:
+    $ref: '../schemas/Price.yaml'
+  iso_currency_code:
+    $ref: '../schemas/IsoCurrencyCode.yaml'
+  description:
+    description: Description of expense.
+    type: string
+    default: ''
+    minLength: 0
+    maxLength: 1024
+  tax_type:
+    $ref: '../schemas/TaxType.yaml'
+  tax_code:
+    type: string
+    description: Tax code
+required:
+  - title
+  - price
+  - iso_currency_code
+  - tax_type
+  - tax_code

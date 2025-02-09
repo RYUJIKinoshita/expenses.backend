@@ -1,0 +1,39 @@
+type: object
+properties:
+  product_id:
+    $ref: '../schemas/ExpenseId.yaml'
+  title:
+    description: Title of expense.
+    type: string
+  price:
+    $ref: '../schemas/Price.yaml'
+  iso_currency_code:
+    $ref: '../schemas/IsoCurrencyCode.yaml'
+  description:
+    description: Description of expense.
+    type: string
+  tax_type:
+    $ref: '../schemas/TaxType.yaml'
+  tax_code:
+    type: string
+    description: Tax code
+  is_deleted:
+    description: Whether expense is deleted or not.
+    type: boolean
+  created_at:
+    description: UNIX time (seconds)
+    type: integer
+  updated_at:
+    description: UNIX time (seconds)
+    type: integer
+required:
+  - expense_id
+  - title
+  - description
+  - price
+  - iso_currency_code
+  - tax_type
+  - tax_code
+  - is_deleted
+  - created_at
+  - updated_at

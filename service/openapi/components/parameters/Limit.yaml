@@ -1,0 +1,9 @@
+name: limit
+description: A maximum amount of results to evaluate.
+in: query
+required: false
+schema:
+  type: integer
+  minimum: 1
+  maximum: 1000
+  default: 50

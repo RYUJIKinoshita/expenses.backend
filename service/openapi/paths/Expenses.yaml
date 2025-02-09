@@ -1,0 +1,61 @@
+post:
+  tags:
+    - Expenses
+  summary: Create expense information.
+  operationId: create_expense
+  requestBody:
+    $ref: '../components/requestBodies/CreateExpenseRequest.yaml'
+  responses:
+    200:
+      $ref: '../components/responses/ExpenseResponse.yaml'
+    400:
+      $ref: '../components/responses/errors/BadRequest.yaml'
+    401:
+      $ref: '../components/responses/errors/Unauthorized.yaml'
+    403:
+      $ref: '../components/responses/errors/Forbidden.yaml'
+    415:
+      $ref: '../components/responses/errors/UnsupportedMediaType.yaml'
+    429:
+      $ref: '../components/responses/errors/TooManyRequests.yaml'
+    500:
+      $ref: '../components/responses/errors/InternalServerError.yaml'
+    502:
+      $ref: '../components/responses/errors/BadGateway.yaml'
+    503:
+      $ref: '../components/responses/errors/ServiceUnavailable.yaml'
+    504:
+      $ref: '../components/responses/errors/GatewayTimeout.yaml'
+  security:
+    - UserToken: []
+
+get:
+  tags:
+    - Expenses
+  summary: Get expenses information.
+  operationId: get_expenses
+  parameters:
+    - $ref: '../components/parameters/NextToken.yaml'
+    - $ref: '../components/parameters/Limit.yaml'
+    - $ref: '../components/parameters/IsDeleted.yaml'
+  responses:
+    200:
+      $ref: '../components/responses/ExpensesResponse.yaml'
+    400:
+      $ref: '../components/responses/errors/BadRequest.yaml'
+    401:
+      $ref: '../components/responses/errors/Unauthorized.yaml'
+    403:
+      $ref: '../components/responses/errors/Forbidden.yaml'
+    429:
+      $ref: '../components/responses/errors/TooManyRequests.yaml'
+    500:
+      $ref: '../components/responses/errors/InternalServerError.yaml'
+    502:
+      $ref: '../components/responses/errors/BadGateway.yaml'
+    503:
+      $ref: '../components/responses/errors/ServiceUnavailable.yaml'
+    504:
+      $ref: '../components/responses/errors/GatewayTimeout.yaml'
+  security:
+    - UserToken: []

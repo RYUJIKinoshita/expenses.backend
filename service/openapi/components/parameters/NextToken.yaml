@@ -1,0 +1,7 @@
+name: next_token
+description: Specify next_token that make this get continue from a previous one.
+in: query
+required: false
+schema:
+  type: string
+  minLength: 1

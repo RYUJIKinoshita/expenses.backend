@@ -1,0 +1,590 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "description": "API Document for Expense backend Service.",
+    "version": "0.1.0",
+    "title": "Expense"
+  },
+  "servers": [
+    {
+      "url": "https://api.expense/v1"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Expenses",
+      "description": "Operation for Expense"
+    }
+  ],
+  "paths": {
+    "/expense": {
+      "post": {
+        "tags": [
+          "Expenses"
+        ],
+        "summary": "Create expense information.",
+        "operationId": "create_expense",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "description": "Title of expense.",
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 120
+                  },
+                  "price": {
+                    "description": "Price of objects.",
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "iso_currency_code": {
+                    "description": "Currency codes available in store (ISO4217).",
+                    "type": "string",
+                    "enum": [
+                      "aed",
+                      "afn",
+                      "all",
+                      "amd",
+                      "ang",
+                      "aoa",
+                      "ars",
+                      "aud",
+                      "awg",
+                      "azn",
+                      "bam",
+                      "bbd",
+                      "bdt",
+                      "bgn",
+                      "bif",
+                      "bmd",
+                      "bnd",
+                      "bob",
+                      "brl",
+                      "bsd",
+                      "bwp",
+                      "bzd",
+                      "cad",
+                      "cdf",
+                      "chf",
+                      "clp",
+                      "cny",
+                      "cop",
+                      "crc",
+                      "cve",
+                      "czk",
+                      "djf",
+                      "dkk",
+                      "dop",
+                      "dzd",
+                      "eek",
+                      "egp",
+                      "etb",
+                      "eur",
+                      "fjd",
+                      "fkp",
+                      "gbp",
+                      "gel",
+                      "gip",
+                      "gmd",
+                      "gnf",
+                      "gtq",
+                      "gyd",
+                      "hkd",
+                      "hnl",
+                      "hrk",
+                      "htg",
+                      "huf",
+                      "idr",
+                      "ils",
+                      "inr",
+                      "isk",
+                      "jmd",
+                      "jpy",
+                      "kes",
+                      "kgs",
+                      "khr",
+                      "kmf",
+                      "krw",
+                      "kyd",
+                      "kzt",
+                      "lak",
+                      "lbp",
+                      "lkr",
+                      "lrd",
+                      "lsl",
+                      "ltl",
+                      "lvl",
+                      "mad",
+                      "mdl",
+                      "mga",
+                      "mkd",
+                      "mnt",
+                      "mop",
+                      "mro",
+                      "mur",
+                      "mvr",
+                      "mwk",
+                      "mxn",
+                      "myr",
+                      "mzn",
+                      "nad",
+                      "ngn",
+                      "nio",
+                      "nok",
+                      "npr",
+                      "nzd",
+                      "pab",
+                      "pen",
+                      "pgk",
+                      "php",
+                      "pkr",
+                      "pln",
+                      "pyg",
+                      "qar",
+                      "ron",
+                      "rsd",
+                      "rub",
+                      "rwf",
+                      "sar",
+                      "sbd",
+                      "scr",
+                      "sek",
+                      "sgd",
+                      "shp",
+                      "sll",
+                      "sos",
+                      "srd",
+                      "std",
+                      "svc",
+                      "szl",
+                      "thb",
+                      "tjs",
+                      "top",
+                      "try",
+                      "ttd",
+                      "twd",
+                      "tzs",
+                      "uah",
+                      "ugx",
+                      "usd",
+                      "uyu",
+                      "uzs",
+                      "vef",
+                      "vnd",
+                      "vuv",
+                      "wst",
+                      "xaf",
+                      "xcd",
+                      "xof",
+                      "xpf",
+                      "yer",
+                      "zar",
+                      "zmw"
+                    ],
+                    "maxLength": 3
+                  },
+                  "description": {
+                    "description": "Description of expense.",
+                    "type": "string",
+                    "default": "",
+                    "minLength": 0,
+                    "maxLength": 1024
+                  },
+                  "tax_type": {
+                    "description": "Tax type",
+                    "title": "TaxType",
+                    "type": "string",
+                    "enum": [
+                      "inclusive",
+                      "exclusive"
+                    ]
+                  },
+                  "tax_code": {
+                    "type": "string",
+                    "description": "Tax code"
+                  }
+                },
+                "required": [
+                  "title",
+                  "price",
+                  "iso_currency_code",
+                  "tax_type",
+                  "tax_code"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "product_id": {
+                      "description": "ID of expense.",
+                      "type": "string",
+                      "pattern": "^([0-9a-fA-F]{8})-([0-9a-fA-F]{4})-([0-9a-fA-F]{4})-([0-9a-fA-F]{4})-([0-9a-fA-F]{12})$",
+                      "format": "uuid"
+                    },
+                    "title": {
+                      "description": "Title of expense.",
+                      "type": "string"
+                    },
+                    "price": {
+                      "$ref": "#/paths/~1expense/post/requestBody/content/application~1json/schema/properties/price"
+                    },
+                    "iso_currency_code": {
+                      "$ref": "#/paths/~1expense/post/requestBody/content/application~1json/schema/properties/iso_currency_code"
+                    },
+                    "description": {
+                      "description": "Description of expense.",
+                      "type": "string"
+                    },
+                    "tax_type": {
+                      "$ref": "#/paths/~1expense/post/requestBody/content/application~1json/schema/properties/tax_type"
+                    },
+                    "tax_code": {
+                      "type": "string",
+                      "description": "Tax code"
+                    },
+                    "is_deleted": {
+                      "description": "Whether expense is deleted or not.",
+                      "type": "boolean"
+                    },
+                    "created_at": {
+                      "description": "UNIX time (seconds)",
+                      "type": "integer"
+                    },
+                    "updated_at": {
+                      "description": "UNIX time (seconds)",
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "expense_id",
+                    "title",
+                    "description",
+                    "price",
+                    "iso_currency_code",
+                    "tax_type",
+                    "tax_code",
+                    "is_deleted",
+                    "created_at",
+                    "updated_at"
+                  ]
+                }
+              }
+            },
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/paths/~1expense/get/responses/400"
+          },
+          "401": {
+            "$ref": "#/paths/~1expense/get/responses/401"
+          },
+          "403": {
+            "$ref": "#/paths/~1expense/get/responses/403"
+          },
+          "415": {
+            "description": "UnsupportedMediaType",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/paths/~1expense/get/responses/400/content/application~1json/schema"
+                }
+              }
+            },
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/paths/~1expense/get/responses/429"
+          },
+          "500": {
+            "$ref": "#/paths/~1expense/get/responses/500"
+          },
+          "502": {
+            "$ref": "#/paths/~1expense/get/responses/502"
+          },
+          "503": {
+            "$ref": "#/paths/~1expense/get/responses/503"
+          },
+          "504": {
+            "$ref": "#/paths/~1expense/get/responses/504"
+          }
+        },
+        "security": [
+          {
+            "UserToken": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Expenses"
+        ],
+        "summary": "Get expenses information.",
+        "operationId": "get_expenses",
+        "parameters": [
+          {
+            "name": "next_token",
+            "description": "Specify next_token that make this get continue from a previous one.",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "limit",
+            "description": "A maximum amount of results to evaluate.",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1000,
+              "default": 50
+            }
+          },
+          {
+            "name": "is_deleted",
+            "description": "Whether is deleted or not.  If it is not specified, it will return all.",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "next_token": {
+                      "type": "string",
+                      "description": "If the total number of items available is more than the value specified, a next_token is provided."
+                    },
+                    "expenses": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/paths/~1expense/post/responses/200/content/application~1json/schema"
+                      }
+                    }
+                  },
+                  "required": [
+                    "expenses"
+                  ]
+                }
+              }
+            },
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "error",
+                    "message"
+                  ]
+                }
+              }
+            },
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/paths/~1expense/get/responses/400/content/application~1json/schema"
+                }
+              }
+            },
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/paths/~1expense/get/responses/400/content/application~1json/schema"
+                }
+              }
+            },
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/paths/~1expense/get/responses/400/content/application~1json/schema"
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": "too_many_requests",
+                      "message": "Too Many Requests"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/paths/~1expense/get/responses/400/content/application~1json/schema"
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": "internal_server_error",
+                      "message": "Internal Server Error"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Bad Gateway",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/paths/~1expense/get/responses/400/content/application~1json/schema"
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": "bad_gateway",
+                      "message": "Bad Gateway"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/paths/~1expense/get/responses/400/content/application~1json/schema"
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": "service_unavailable",
+                      "message": "Service Unavailable"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Gateway Timeout",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/paths/~1expense/get/responses/400/content/application~1json/schema"
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "error": "gateway_timeout",
+                      "message": "Gateway Timeout"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "UserToken": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "S2SToken": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      },
+      "UserToken": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  }
+}

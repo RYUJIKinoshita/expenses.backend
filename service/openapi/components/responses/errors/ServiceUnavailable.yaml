@@ -1,0 +1,10 @@
+description: Service Unavailable
+content:
+  application/json:
+    schema:
+      $ref: '../../schemas/ErrorResponse.yaml'
+    examples:
+      Example 1:
+        value:
+          error: service_unavailable
+          message: Service Unavailable

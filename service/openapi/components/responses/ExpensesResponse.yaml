@@ -1,0 +1,19 @@
+description: OK
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        next_token:
+          type: string
+          description: If the total number of items available is more than the value specified, a next_token is provided.
+        expenses:
+          type: array
+          items:
+            $ref: '../schemas/ExpenseResponse.yaml'
+      required:
+        - expenses
+headers:
+  Access-Control-Allow-Origin:
+    schema:
+      type: string

@@ -1,0 +1,28 @@
+openapi: 3.0.0
+
+ 
+info:
+  description: API Document for Expense backend Service.
+  version: 0.1.0
+  title: Expense
+  license: 
+    name: Apache License 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0
+
+servers:
+  - url: https://api.expense/v1
+
+tags:
+  - name: Expenses
+    description: Operation for Expense
+
+paths:
+  /expense:
+    $ref: './paths/Expenses.yaml'
+
+components:
+  securitySchemes:
+    S2SToken:
+      $ref: './components/securitySchemes/S2SToken.yaml'
+    UserToken:
+      $ref: './components/securitySchemes/UserToken.yaml'
